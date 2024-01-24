@@ -1,7 +1,9 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseNotAllowed
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question
+from django.utils import timezone
+from .forms import QuestionForm, AnswerForm
 
 def index(request):
     question_list = Question.objects.order_by('-create_date')
@@ -15,6 +17,34 @@ def detail(request, question_id):
     return render(request, 'qna/question_detail.html', context)
 
 
+def answer_create(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.create_date = timezone.now()
+            answer.question = question
+            answer.save()
+            return redirect('qna:detail', question_id=question.id)
+    else:
+        return HttpResponseNotAllowed('Only POST is possible.')
+    context = {'question' : question, 'form' : form}
+    return render(request, 'qna/question_detail.html', context)
 
+
+def question_create(request):
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+            return redirect('qna:index')
+    else:
+        form = QuestionForm()
+    context = {'form' : form}
+    # {'form' : form} 은 템플릿에서 질문 등록 시 사용할 폼 엘리먼트를 생성할 때 사용
+    return render(request, 'qna/question_form.html', context)
 
 # Create your views here.
