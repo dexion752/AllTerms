@@ -17,7 +17,6 @@ def answer_create(request, question_id):
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
-            # return redirect('qna:detail', question_id=question.id)
             return redirect('{}#answer_{}'.format(
                 resolve_url('qna:detail', question_id=question.id), answer.id
             ))
@@ -66,6 +65,6 @@ def answer_vote(request, answer_id):
     else:
         answer.voter.add(request.user)
     # return redirect('qna:detail', question_id=answer.question.id)
-    return redirect('(}#answer_{}'.format(
+    return redirect('{}#answer_{}'.format(
         resolve_url('qna:detail', question_id=answer.question.id), answer.id
     ))
