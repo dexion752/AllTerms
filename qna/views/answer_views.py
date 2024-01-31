@@ -64,7 +64,6 @@ def answer_vote(request, answer_id):
         messages.error(request, '본인이 작성한 글은 추천할 수 없습니다.')
     else:
         answer.voter.add(request.user)
-    # return redirect('qna:detail', question_id=answer.question.id)
     return redirect('{}#answer_{}'.format(
         resolve_url('qna:detail', question_id=answer.question.id), answer.id
     ))
