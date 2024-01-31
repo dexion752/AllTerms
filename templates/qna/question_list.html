@@ -4,6 +4,7 @@
 <div class="container my-3">
     <div class="row my-3">
         <div class="col-6">
+<!--            <a href="javascript:void(0)" data-page="{% url 'qna:question_create' %}" class="btn btn-primary" id="create_q">질문 등록하기</a>-->
             <a href="{% url 'qna:question_create' %}" class="btn btn-primary">질문 등록하기</a>
         </div>
         <div class="col-6">
@@ -120,6 +121,7 @@ btn_search.addEventListener('click', function() {
     document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
     document.getElementById('searchForm').submit();
 });
+var simplmde = new SimpleMDE({ element: document.getElementById("create_q") });
 </script>
 {% endblock %}
 

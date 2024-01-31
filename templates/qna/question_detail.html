@@ -38,7 +38,7 @@
                     <a href="{% url 'qna:question_modify' question.id %}"
                        class="btn btn-sm btn-outline-secondary">수정</a>
                     <a href="javascript:void(0)" class="delete btn btn-sm btn-outline-secondary"
-                        data-uri="{% url 'qna:question_delete' question.id %}">삭제</a>
+                       data-uri="{% url 'qna:question_delete' question.id %}">삭제</a>
                     {% endif %}
                 </div>
             </div>
@@ -124,6 +124,7 @@ Array.from(recommend_elements).forEach(function(element) {
         };
     });
 });
+var simplemde = new SimpleMDE({element: document.getElementById("content")});
 </script>
 {% endblock %}
 
