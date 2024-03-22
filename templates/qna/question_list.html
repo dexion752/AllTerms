@@ -41,6 +41,9 @@
                 <button type="button" class="btn btn-light btn-sm">
                     답변 <span class="badge rounded-pill bg-danger">{{ question.answer_set.count }}</span>
                 </button>
+                <button type="button" class="btn btn-light btn-sm" aria-disabled="true">
+                    추천 <span class="badge rounded-pill bg-danger">{{ question.voter.count }}</span>
+                </button>
                 {% endif %}
             </td>
             <td>{{ question.author.username }}</td>

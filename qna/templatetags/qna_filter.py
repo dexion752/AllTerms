@@ -3,11 +3,6 @@ from django import template
 from django.utils.safestring import mark_safe
 
 register = template.Library()
-import simplemde
-
-@register.filter
-def simplemde(value):
-    return SimpleMDE(value)
 
 @register.filter
 def sub(value, arg):

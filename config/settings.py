@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'southterms.apps.SouthtermsConfig',
     'common.apps.CommonConfig',
     'qna.apps.QnaConfig',
     'django.contrib.admin',
