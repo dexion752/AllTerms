@@ -15,6 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+import config.views
+# from config inport views
+# import views
+
 from qna.views import base_views
 
 urlpatterns = [
@@ -22,4 +27,6 @@ urlpatterns = [
     path('qna/', include('qna.urls')),
     path('common/', include('common.urls')),
     path('', base_views.index, name='index'),
+    # path('southterms/', config.views.indexTest),
+    path('southterms/', include('southterms.urls')),
 ]
