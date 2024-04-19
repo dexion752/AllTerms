@@ -28,5 +28,5 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('', base_views.index, name='index'),
     # path('southterms/', config.views.indexTest),
-    path('southterms/', include('southterms.urls')),
+    path('south/', include('southterms.urls')),
 ]

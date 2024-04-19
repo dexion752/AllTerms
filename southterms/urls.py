@@ -1,9 +1,10 @@
 from django.urls import path
 from config import views
 # from models import southIndex
+from .views import base_views
 app_name = 'south'
 
 urlpatterns = [
-    path('', views.indexTest),
-    # path('astro/', ),
+    path('', base_views.indexTest, name='index'),
+    path('astro/', base_views.astroList, name='astroList'),
 ]
