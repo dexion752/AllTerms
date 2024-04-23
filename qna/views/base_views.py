@@ -5,7 +5,7 @@ from ..models import Question
 
 from django.db.models import Q
 
-def index(request):
+def qnaIndex(request):
     MAX_LIST_CNT = 15
     last_page_num = 0
     page = request.GET.get('page', '1') # 페이지

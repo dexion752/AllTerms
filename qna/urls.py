@@ -6,7 +6,7 @@ app_name = 'qna'
 urlpatterns = [
     # base_views.py
     path('',
-         base_views.index, name='index'),
+         base_views.qnaIndex, name='qnaIndex'),
     path('<int:question_id>/',
          base_views.detail, name='detail'),
 

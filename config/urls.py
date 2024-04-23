@@ -17,16 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 
 import config.views
-# from config inport views
+# from config import views
 # import views
 
 from qna.views import base_views
+from config import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('qna/', include('qna.urls')),
     path('common/', include('common.urls')),
-    path('', base_views.index, name='index'),
+    path('', views.index, name='index'),
+    # path('', base_views.index, name='index'),
     # path('southterms/', config.views.indexTest),
     path('south/', include('southterms.urls')),
 ]

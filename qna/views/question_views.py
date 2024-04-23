@@ -15,7 +15,7 @@ def question_create(request):
             question.author = request.user
             question.create_date = timezone.now()
             question.save()
-            return redirect('qna:index')
+            return redirect('qna:qnaIndex')
     else:
         form = QuestionForm()
     context = {'form' : form}
@@ -48,7 +48,7 @@ def question_delete(request, question_id):
         messages.error(request, '삭제 권한이 없습니다')
         return redirect('qna:detail', question_id=question.id)
     question.delete()
-    return redirect('qna:index')
+    return redirect('qna:qnaIndex')
 
 @login_required(login_url='common:login')
 def question_vote(request, question_id):
