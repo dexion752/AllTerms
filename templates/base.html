@@ -8,9 +8,9 @@
 <!--    simpeMDE css-->
     <link rel="stylesheet" type="text/css" href="{% static 'simplemde.css' %}">
 <!--    Bootstrap CSS-->
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 <!--    qna css-->
-    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <title>겨레말 남북 전문용어</title>
 </head>
 <body>
@@ -18,15 +18,17 @@
 {% include "navbar.html" %}
 <!--기본 템플릿 안에 삽입될 내용 start-->
 {% block content %}
-{% endblock %}
-<!--기본 템플릿 안에 삽일될 내용 end-->
-<!--simpleMDE js-->
-<script src="{% static 'simplemde.js' %}"></script>
-<!--Bootstrap JS-->
-<script src="{% static 'bootstrap.min.js' %}"></script>
-<!--자바스크립트 Start-->
-{% block script %}
+    {% endblock %}
+    <!--기본 템플릿 안에 삽일될 내용 end-->
+    <!--simpleMDE js-->
+    <script src="{% static 'simplemde.js' %}"></script>
+    <!--Bootstrap JS-->
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <!--자바스크립트 Start-->
+    {% block script %}
 {% endblock %}
 <!--자바스크립트 End-->
+<!--내비게이션바-->
+{% include "footbar.html" %}
 </body>
 </html>

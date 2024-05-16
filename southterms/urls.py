@@ -6,5 +6,6 @@ app_name = 'south'
 
 urlpatterns = [
     path('', base_views.indexTest, name='index'),
+    # path('', )
     path('astro/', base_views.astroList, name='astroList'),
 ]

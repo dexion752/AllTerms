@@ -128,10 +128,23 @@ class NaverAstro(models.Model):
     eng = models.TextField(blank=True, null=True)
     simple_sense = models.TextField(blank=True, null=True)
     source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'naver_astro'
+
+
+class NaverBiochemi(models.Model):
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'naver_biochemi'
 
 
 class QnaAnswer(models.Model):
@@ -180,3 +193,18 @@ class QnaQuestionVoter(models.Model):
         managed = False
         db_table = 'qna_question_voter'
         unique_together = (('question', 'user'),)
+
+
+class Sources(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    publisher = models.CharField(max_length=200)
+    code = models.TextField(blank=True, null=True)
+    uri = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sources'
