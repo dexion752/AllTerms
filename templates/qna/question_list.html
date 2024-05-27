@@ -104,7 +104,7 @@
     </ul>
 <!--    페이징 처리 end-->
 </div>
-<form action="{% url 'index' %}" id="searchForm" method="get">
+<form action="{% url 'qna:qnaIndex' %}" id="searchForm" method="get">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
 </form>
