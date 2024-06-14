@@ -30,6 +30,7 @@ def astroList(request):
             Q(simple_sense__icontains=kw) |
             Q(eng__icontains=kw)
         ).distinct()
+        cnt = terms_list.count()
     paginator = Paginator(terms_list, MAX_LIST_CNT)
     for page_num in paginator.page_range:
         last_page_num = last_page_num + 1
@@ -39,8 +40,7 @@ def astroList(request):
                'last_page_num' : last_page_num,
                'page' : page,
                'kw' : kw,
-               # 'cnt' : cnt,
+               'cnt' : cnt,
                }
     # print(last_page_num)
     return render(request, 'southterms/terms_list.html', context)
-
