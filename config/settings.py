@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'MATHJAX_ENABLED=True',
     'southterms.apps.SouthtermsConfig',
     'common.apps.CommonConfig',
     'qna.apps.QnaConfig',
