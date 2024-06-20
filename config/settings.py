@@ -92,7 +92,15 @@ DATABASES = {
         'USER': config('DATABASE_USERNAME'),
         'PASSWORD': config('DATABASE_PASSWORD'),
         'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT', cast = int),
+        'PORT': config('DATABASE_PORT', cast=int),
+    },
+    'ged': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('GED_NAME'),
+        'USER': config('GED_USERNAME'),
+        'PASSWORD': config('GED_PASSWORD'),
+        'HOST': config('GED_HOST'),
+        'PORT': config('GED_PORT', cast=int),
     }
 }
 
