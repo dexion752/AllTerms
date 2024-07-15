@@ -17,12 +17,14 @@ def southSources(request):
                 }
     return render(request, 'common/southsrc.html', context)
 
-def astroList(request):
+def nAstroList(request):
     MAX_LIST_CNT = 10
     last_page_num = 0
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '') # 검색어
     terms_list = NaverAstro.objects.order_by('term')
+    # tableName = 'n' + NaverAstro._meta.db_table.split('_')[1]
+    # print(tableName)
     cnt = NaverAstro.objects.count()
     if kw:
         terms_list = terms_list.filter(
@@ -41,9 +43,9 @@ def astroList(request):
                'page' : page,
                'kw' : kw,
                'cnt' : cnt,
+               # 'url' : '{% url \'south:' + tableName + '\' %}',
                }
-    # print(last_page_num)
-    return render(request, 'southterms/terms_list.html', context)
+    return render(request, 'southterms/terms_nastro_list.html', context)
 
 def biochemiList(request):
     MAX_LIST_CNT = 10
@@ -71,4 +73,4 @@ def biochemiList(request):
                'cnt' : cnt,
                }
     # print(last_page_num)
-    return render(request, 'southterms/terms_list.html', context)
+    return render(request, 'southterms/terms_nbiochemi_list.html', context)
