@@ -8,6 +8,7 @@ urlpatterns = [
     path('', base_views.indexTest, name='index'),
     # path('', )
     path('nastro/', base_views.nAstroList, name='nastro'),
-    path('nbiochemi/', base_views.biochemiList, name='nbiochemi'),
+    path('nbiochemi/', base_views.nBiochemiList, name='nbiochemi'),
+    path('nbotany/', base_views.nBotanyList, name='nbotany'),
 
 ]
