@@ -10,5 +10,7 @@ urlpatterns = [
     path('nastro/', base_views.nAstroList, name='nastro'),
     path('nbiochemi/', base_views.nBiochemiList, name='nbiochemi'),
     path('nbotany/', base_views.nBotanyList, name='nbotany'),
+    path('nbuddh/', base_views.nBuddhList, name='nbuddh'),
+    path('ncell/', base_views.nCellList, name='ncell'),
 
 ]

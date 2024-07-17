@@ -156,10 +156,40 @@ class NaverBotany(models.Model):
     eng = models.TextField(blank=True, null=True)
     simple_sense = models.TextField(blank=True, null=True)
     source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'naver_botany'
+
+
+class NaverBuddh(models.Model):
+    id = models.BigIntegerField(blank=True, null=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'naver_buddh'
+
+
+class NaverCell(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'naver_cell'
 
 
 class QnaAnswer(models.Model):
