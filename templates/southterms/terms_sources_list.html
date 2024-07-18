@@ -2,22 +2,19 @@
 {% load qna_filter %}
 {% block content %}
 <div class="container my-3">
-    <div class="col-6">
-        <a href="{% url 'south:srcIndex' %}" class="btn btn-primary">자료 목록</a>
-    </div>
     <div style="text-align:center">
-        <a href="{% url 'south:nbuddh' %}" class=""
-           style="font-size:2rem; text-decoration-line:none">시공 불교사전 등</a>
+        <a href="{% url 'south:srcIndex' %}" class=""
+           style="font-size:2rem; text-decoration-line:none">전문용어 자료 목록</a>
     </div>
     <div class="row my-3">
         <div class="col-6">
-            <label for="total-terms">총 항목: </label>
+            <label for="total-terms">항목: </label>
             <input type="text" name="" id="total-terms" value="{{ cnt }}" readonly>
         </div>
         <div class="col-6">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}"
-                       placeholder="<국문 표기, 영어 표기, 용어 개괄> 안에서">
+                       placeholder="<자료명, 분류 코드> 안에서">
                 <div>&ensp;&ensp;</div>
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="button" id="btn_search">검색</button>
@@ -29,10 +26,10 @@
         <thead>
         <tr class="text-center table-dark">
 <!--            <th style="width:10%">번호</th>-->
-            <th style="width:15%">국문 표기</th>
-            <th style="width:15%">한자 표기</th>
-            <th style="width:70%">용어 개괄</th>
-<!--            <th style="width:10%">출처</th>-->
+            <th style="width:25%">자료명</th>
+            <th style="width:25%">저자</th>
+            <th style="width:25%">발행처</th>
+            <th style="width:20%">분류코드</th>
         </tr>
         </thead>
         <tbody>
@@ -42,15 +39,15 @@
 <!--            <td>-->
 <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
 <!--            </td>-->
-            <td>{{ term.term }}</td>
-            <td>{{ term.eng }}</td>
-            <td>{{ term.simple_sense }}</td>
-<!--            <td>{{ term.source }}</td>-->
+            <td>{{ term.title}}</td>
+            <td>{{ term.auther }}</td>
+            <td>{{ term.publisher }}</td>
+            <td>{{ term.code }}</td>
         </tr>
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">전문 용어가 없습니다.</td>
+            <td colspan="3">해당 자료가 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>
@@ -101,7 +98,7 @@
     </ul>
 <!--    페이징 처리 end-->
 </div>
-<form action="{% url 'south:nbuddh' %}" id="searchForm" method="get">
+<form action="{% url 'south:srcIndex' %}" id="searchForm" method="get">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
 </form>
