@@ -22,7 +22,7 @@ def srcList(request):
     if kw:
         terms_list = terms_list.filter(
             Q(title__icontains=kw)  |
-            Q(simple_sense__icontains=kw) |
+            # Q(simple_sense__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
         cnt = terms_list.count()

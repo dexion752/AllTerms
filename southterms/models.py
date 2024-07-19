@@ -140,6 +140,7 @@ class Sources(models.Model):
     publisher = models.CharField(max_length=200)
     code = models.TextField(blank=True, null=True)
     uri = models.TextField(blank=True, null=True)
+    path = models.TextField(blank=True, null=True)
     create_date = models.DateTimeField(blank=False, null=False)
     modify_date = models.DateTimeField(blank=True, null=True)
 
