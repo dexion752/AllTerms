@@ -135,6 +135,7 @@ class NaverChemiPedia(models.Model):
         db_table = 'naver_chemipedia'
 
 class Sources(models.Model):
+    id = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=False, null=False)
     author = models.CharField(max_length=100, blank=False, null=False)
     publisher = models.CharField(max_length=200)
