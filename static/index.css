@@ -1,0 +1,50 @@
+#my_menu {
+  text-align: center;
+}
+#my_menu div {
+  position: relative;
+  display: inline-block;
+}
+
+#my_span {
+  display: flex;
+  width: 100%;
+  padding: 2px 16px;
+  cursor: pointer;
+}
+
+/* 말풍선 적절한 top 과 margin-left 로 위치조정 */
+.my_arrow_box {
+  display: none;
+  position: absolute;
+  bottom: 35%;
+  margin-left: 80%;
+  width: 350px;
+  padding: 8px;
+  left: 0;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  font-size: 15px;
+}
+
+.my_arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  width: 0;
+  height: 0;
+  margin-left: -10;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+
+#my_span:hover + p.my_arrow_box {
+  display: block;
+}
