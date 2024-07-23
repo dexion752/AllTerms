@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'southterms.apps.SouthtermsConfig',
     'common.apps.CommonConfig',
     'qna.apps.QnaConfig',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

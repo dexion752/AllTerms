@@ -16,8 +16,7 @@ def srcList(request):
     last_page_num = 0
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '') # 검색어
-    terms_list = Sources.objects.order_by('title')
-    # title = terms_list[0].source
+    terms_list = Sources.objects.order_by('id')
     cnt = Sources.objects.count()
     if kw:
         terms_list = terms_list.filter(
@@ -36,16 +35,8 @@ def srcList(request):
                'page' : page,
                'kw' : kw,
                'cnt' : cnt,
-               # 'title' : title,
                }
     return render(request, 'southterms/terms_sources_list.html', context)
-
-
-# def southSources(request):
-#     src = SouthSrc.objects.all()
-#     context = { 'src' : src,
-#                 }
-#     return render(request, 'common/southsrc.html', context)
 
 def nAstroList(request):
     MAX_LIST_CNT = 10

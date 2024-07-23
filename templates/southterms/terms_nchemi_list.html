@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load qna_filter %}
 {% block content %}
 <div class="container my-3">
@@ -12,7 +13,7 @@
     <div class="row my-3">
         <div class="col-6">
             <label for="total-terms">총 항목: </label>
-            <input type="text" name="" id="total-terms" value="{{ cnt }}" readonly>
+            <input type="text" name="" id="total-terms" value="{{ cnt|intcomma }}" readonly>
         </div>
         <div class="col-6">
             <div class="input-group">

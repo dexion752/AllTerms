@@ -142,7 +142,8 @@ class Sources(models.Model):
     code = models.TextField(blank=True, null=True)
     uri = models.TextField(blank=True, null=True)
     path = models.TextField(blank=True, null=True)
-    create_date = models.DateTimeField(blank=False, null=False)
+    sum = models.IntegerField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
     modify_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
