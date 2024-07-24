@@ -16,5 +16,6 @@ urlpatterns = [
     path('nchemi/', base_views.nChemiList, name='nchemi'),
     path('nlife/', base_views.nLifeList, name='nlife'),
     path('nchemipedia/', base_views.nChemiPediaList, name='nchemipedia'),
+    path('nmath/', base_views.nMathList, name='nmath'),
 
 ]

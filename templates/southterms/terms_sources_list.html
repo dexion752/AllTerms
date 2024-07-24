@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load qna_filter %}
 {% block content %}
 <div class="container my-3">
@@ -9,7 +10,7 @@
     <div class="row my-3">
         <div class="col-6">
             <label for="total-terms">항목: </label>
-            <input type="text" name="" id="total-terms" value="{{ cnt }}" readonly>
+            <input type="text" name="" id="total-terms" value="{{ cnt|intcomma }}" readonly>
         </div>
         <div class="col-6">
             <div class="input-group">
@@ -45,24 +46,25 @@
                 <thead>
                 <tr class="text-center table-primary">
                     <!--            <th style="width:10%">번호</th>-->
-                    <th style="width:25%">자료명</th>
+                    <th style="width:30%">자료명</th>
                     <th style="width:25%">저자</th>
                     <th style="width:25%">발행처</th>
-                    <th style="width:20%">분류코드</th>
-                </tr>
+                    <th style="width:10%">항목 수</th>
+                    <th style="width:10%">분류코드</th>
                 </thead>
                 <tbody>
                 {% if terms_list %}
                 {% for term in terms_list %}
-                <tr>
+                <tr class="text-center">
                     <!--            <td>-->
                     <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
                     <!--            </td>-->
-                    <td class="text-start">
-                        <a href="{{ term.path }}">{{ term.title }}</a>
+                    <td class="text-center text-start">
+                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title }}</a>
                     </td>
                     <td>{{ term.author }}</td>
                     <td>{{ term.publisher }}</td>
+                    <td>{{ term.sum|intcomma }}</td>
                     <td>{{ term.code }}</td>
                 </tr>
                 {% endfor %}
