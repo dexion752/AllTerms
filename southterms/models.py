@@ -162,6 +162,24 @@ class NaverMeteo(models.Model):
         managed = True
         db_table = 'naver_meteo'
 
+
+
+
+class NaverEarth(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_earth'
+
 class Sources(models.Model):
     id = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=False, null=False)
