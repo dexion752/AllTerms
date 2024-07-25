@@ -20,5 +20,6 @@ urlpatterns = [
     path('nmeteo/', base_views.nMeteoList, name='nmeteo'),
     path('nearth/', base_views.nEarthList, name='nearth'),
     path('ngeo/', base_views.nGeoList, name='ngeo'),
+    path('nocean/', base_views.nOceanList, name='nocean'),
 
 ]
