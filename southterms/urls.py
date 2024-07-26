@@ -21,5 +21,7 @@ urlpatterns = [
     path('nearth/', base_views.nEarthList, name='nearth'),
     path('ngeo/', base_views.nGeoList, name='ngeo'),
     path('nocean/', base_views.nOceanList, name='nocean'),
+    path('nzoo/', base_views.nZooList, name='nzoo'),
+    path('nmicrobio/', base_views.nMicroBioList, name='nmicrobio'),
 
 ]
