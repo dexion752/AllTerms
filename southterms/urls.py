@@ -23,5 +23,6 @@ urlpatterns = [
     path('nocean/', base_views.nOceanList, name='nocean'),
     path('nzoo/', base_views.nZooList, name='nzoo'),
     path('nmicrobio/', base_views.nMicroBioList, name='nmicrobio'),
+    path('nfood/', base_views.nFoodList, name='nfood'),
 
 ]
