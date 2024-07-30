@@ -26,5 +26,7 @@ urlpatterns = [
     path('nfood/', base_views.nFoodList, name='nfood'),
     path('nwater/', base_views.nWaterList, name='nwater'),
     path('nmine/', base_views.nMineList, name='nmine'),
+    path('nweather/', base_views.nWeatherList, name='nweather'),
+    path('ngovern/', base_views.nGovernList, name='ngovern'),
 
 ]
