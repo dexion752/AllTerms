@@ -15,9 +15,19 @@ def indexTest(request):
 def srcList(request):
     MAX_LIST_CNT = 10
     last_page_num = 0
+    total_s = 0
+    total_n = 0
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '') # 검색어
     terms_list = Sources.objects.order_by('id')
+    s_list = terms_list.filter(code='s')
+    n_list = terms_list.filter(code='n')
+    for no in range(terms_list.count()):
+        row = terms_list.get(id=no)
+        if row.code == 's':
+            total_s = total_s + row.sum
+        else:
+            total_n = total_n + row.sum
     cnt = Sources.objects.count()
     if kw:
         terms_list = terms_list.filter(
@@ -36,6 +46,8 @@ def srcList(request):
                'page' : page,
                'kw' : kw,
                'cnt' : cnt,
+               'total_n' : total_n,
+               'total_s' : total_s,
                }
     return render(request, 'southterms/terms_sources_list.html', context)
 
@@ -525,3 +537,35 @@ def nFoodList(request):
                }
     # print(last_page_num)
     return render(request, 'southterms/terms_nfood_list.html', context)
+
+
+
+def nWaterList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverWater.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverWater.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nwater_list.html', context)

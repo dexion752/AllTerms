@@ -27,12 +27,16 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-home" type="button" role="tab"
-                    aria-controls="pills-home" aria-selected="true">남측 전문용어 자료</button>
+                    aria-controls="pills-home" aria-selected="true">남측 전문용어 자료
+                <span class="badge rounded-pill bg-primary">총 {{  total_s|intcomma }}개</span>
+            </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-profile" type="button" role="tab"
-                    aria-controls="pills-profile" aria-selected="false">북측 전문용어 자료</button>
+                    aria-controls="pills-profile" aria-selected="false">북측 전문용어 자료
+                <span class="badge rounded-pill bg-danger">총 {{  total_n|intcomma }}개</span>
+            </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"

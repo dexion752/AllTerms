@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class NaverAstro(models.Model):
@@ -264,6 +265,25 @@ class NaverFood(models.Model):
     class Meta:
         managed = True
         db_table = 'naver_food'
+
+
+class NaverWater(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def createDate(self):
+        self.create_date = timezone.now()
+        self.save()
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_water'
 
 class Sources(models.Model):
     id = models.BigIntegerField(primary_key=True)
