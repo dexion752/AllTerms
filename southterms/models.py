@@ -330,6 +330,233 @@ class NaverGovern(models.Model):
         managed = True
         db_table = 'naver_govern'
 
+
+class NaverEcoHK(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_ecohk'
+
+
+class NaverLiter(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_liter'
+
+
+class NaverChurch(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_church'
+
+
+class NaverObuddh(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_obuddh'
+
+
+class NaverReligion(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_religion'
+
+
+class NaverSaju(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_saju'
+
+class NaverMediSeoul(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_mediseoul'
+
+
+class NaverMedirare(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+    class Meta:
+        managed = True
+        db_table = 'naver_medirare'
+
+
+class NaverNurse(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_nurse'
+
+class NaverMediShort(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_medishort'
+
+
+class NaverMediBody(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_medibody'
+
+
+class NaverDisease(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_disease'
+
+
+class NaverPharmacy(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_pharmacy'
+
+class NaverDrug(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    term = models.TextField(blank=True, null=True)
+    eng = models.TextField(blank=True, null=True)
+    simple_sense = models.TextField(blank=True, null=True)
+    source = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.term
+
+    class Meta:
+        managed = True
+        db_table = 'naver_drug'
+
 class Sources(models.Model):
     id = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=False, null=False)

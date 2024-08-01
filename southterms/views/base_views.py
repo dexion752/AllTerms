@@ -2,7 +2,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
-from ..models import Sources, NaverAstro, NaverBiochemi, NaverBotany, NaverBuddh, NaverCell, NaverChemi, NaverLife, NaverChemiPedia, NaverMath, NaverMeteo, NaverEarth, NaverGeo, NaverOcean
 from ..models import *
 
 from django.db.models import Q
@@ -19,9 +18,11 @@ def srcList(request):
     total_n = 0
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '') # 검색어
-    terms_list = Sources.objects.order_by('id')
-    s_list = terms_list.filter(code='s')
-    n_list = terms_list.filter(code='n')
+    terms_list = Sources.objects.order_by('title')
+    terms_list_s = Sources.objects.filter(code='s').order_by('title')
+    terms_list_n = Sources.objects.filter(code='n').order_by('title')
+    print(terms_list_s)
+    print(terms_list_n)
     for no in range(terms_list.count()):
         row = terms_list.get(id=no)
         if row.code == 's':
@@ -661,3 +662,428 @@ def nGovernList(request):
                }
     # print(last_page_num)
     return render(request, 'southterms/terms_ngovern_list.html', context)
+
+
+def nEcohkList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverEcoHK.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverEcoHK.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_necohk_list.html', context)
+
+def nLiterList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverLiter.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverLiter.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nliter_list.html', context)
+
+def nChurchList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverChurch.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverChurch.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nchurch_list.html', context)
+
+def nObuddhList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverObuddh.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverObuddh.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nobuddh_list.html', context)
+
+def nReligionList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverReligion.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverReligion.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nreligion_list.html', context)
+
+def nSajuList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverSaju.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverSaju.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nsaju_list.html', context)
+
+
+def nMediSeoulList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverMediSeoul.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverMediSeoul.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nmediseoul_list.html', context)
+
+
+def nMediRareList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverMedirare.objects.order_by('term')
+    title = terms_list[0].source
+    cnt = NaverMedirare.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nmedirare_list.html', context)
+
+
+def nNurseList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverNurse.objects.order_by('term')
+    title = terms_list[1].source
+    cnt = NaverNurse.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nnurse_list.html', context)
+
+def nDrugList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverDrug.objects.order_by('term')
+    title = terms_list[1].source
+    cnt = NaverDrug.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_ndrug_list.html', context)
+
+def nMediShortList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverMediShort.objects.order_by('id')
+    title = terms_list[1].source
+    cnt = NaverMediShort.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nmedishort_list.html', context)
+
+def nMediBodyList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverMediBody.objects.order_by('term')
+    title = terms_list[1].source
+    cnt = NaverMediBody.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_nmedibody_list.html', context)
+
+def nDiseaseList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverDisease.objects.order_by('term')
+    title = terms_list[1].source
+    cnt = NaverDisease.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_ndisease_list.html', context)
+
+def nPharmacyList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = NaverPharmacy.objects.order_by('term')
+    title = terms_list[1].source
+    cnt = NaverPharmacy.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(term__icontains=kw)  |
+            Q(simple_sense__icontains=kw) |
+            Q(eng__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_npharmacy_list.html', context)
+

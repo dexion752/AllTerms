@@ -7,7 +7,7 @@
         <a href="{% url 'south:srcIndex' %}" class="btn btn-primary">자료 목록</a>
     </div>
     <div style="text-align:center">
-        <a href="{% url 'south:nmicrobio' %}" class=""
+        <a href="{% url 'south:nmedishort' %}" class=""
            style="font-size:2rem; text-decoration-line:none">{{ title }}</a>
     </div>
     <div class="row my-3">
@@ -30,8 +30,8 @@
         <thead>
         <tr class="text-center table-dark">
 <!--            <th style="width:10%">번호</th>-->
-            <th style="width:15%">국문 표기</th>
-            <th style="width:15%">원어 표기</th>
+            <th style="width:15%">약어 표기</th>
+            <th style="width:15%">본말 표기</th>
             <th style="width:70%">용어 개괄</th>
 <!--            <th style="width:10%">출처</th>-->
         </tr>
@@ -102,7 +102,7 @@
     </ul>
 <!--    페이징 처리 end-->
 </div>
-<form action="{% url 'south:nmicrobio' %}" id="searchForm" method="get">
+<form action="{% url 'south:nmedishort' %}" id="searchForm" method="get">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
 </form>
