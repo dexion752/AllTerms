@@ -59,8 +59,8 @@
                     <th style="width:10%">분류코드</th>
                 </thead>
                 <tbody>
-                {% if terms_list %}
-                {% for term in terms_list %}
+                {% if terms_list_s %}
+                {% for term in terms_list_s %}
                 <tr class="text-center">
                     <!--            <td>-->
                     <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
@@ -87,9 +87,9 @@
                     <a class="page-link" href="?page=1">&lt;&lt;</a>
                 </li>
                 <!--        이전 페이지-->
-                {% if terms_list.has_previous %}
+                {% if terms_list_s.has_previous %}
                 <li class="page-item">
-                    <a href="javascript:void(0)" data-page="{{ terms_list.previous_page_number }}"
+                    <a href="javascript:void(0)" data-page="{{ terms_list_s.previous_page_number }}"
                        class="page-link">이전</a>
                 </li>
                 {% else %}
@@ -98,9 +98,9 @@
                 </li>
                 {% endif %}
                 <!--        페이지 리스트-->
-                {% for page_number in terms_list.paginator.page_range %}
-                {% if page_number >= terms_list.number|add:-2 and page_number <= terms_list.number|add:2 %}
-                {% if page_number == terms_list.number %}
+                {% for page_number in terms_list_s.paginator.page_range %}
+                {% if page_number >= terms_list_s.number|add:-2 and page_number <= terms_list_s.number|add:2 %}
+                {% if page_number == terms_list_s.number %}
                 <li class="page-item active" aria-current="page">
                     <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
                 </li>
@@ -112,9 +112,9 @@
                 {% endif %}
                 {% endfor %}
                 <!--        다음 페이지-->
-                {% if terms_list.has_next %}
+                {% if terms_list_s.has_next %}
                 <li class="page-item">
-                    <a href="javascript:void(0)" class="page-link" data-page="{{ terms_list.next_page_number }}">다음</a>
+                    <a href="javascript:void(0)" class="page-link" data-page="{{ terms_list_s.next_page_number }}">다음</a>
                 </li>
                 {% else %}
                 <li class="page-item disabled">
@@ -127,7 +127,86 @@
             </ul>
             <!--    페이징 처리 end-->
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">준비 중</div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr class="text-center table-primary">
+                    <!--            <th style="width:10%">번호</th>-->
+                    <th style="width:30%">자료명</th>
+                    <th style="width:25%">저자</th>
+                    <th style="width:25%">발행처</th>
+                    <th style="width:10%">항목 수</th>
+                    <th style="width:10%">분류코드</th>
+                </thead>
+                <tbody>
+                {% if terms_list_n %}
+                {% for term in terms_list_n %}
+                <tr class="text-center">
+                    <!--            <td>-->
+                    <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
+                    <!--            </td>-->
+                    <td class="text-center text-start">
+                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title }}</a>
+                    </td>
+                    <td>{{ term.author }}</td>
+                    <td>{{ term.publisher }}</td>
+                    <td>{{ term.sum|intcomma }}</td>
+                    <td>{{ term.code }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4">해당 자료가 없습니다.</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            <!--    페이징 처리 start-->
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&lt;&lt;</a>
+                </li>
+                <!--        이전 페이지-->
+                {% if terms_list_n.has_previous %}
+                <li class="page-item">
+                    <a href="javascript:void(0)" data-page="{{ terms_list_n.previous_page_number }}"
+                       class="page-link">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a href="javascript:void(0)" class="page-link" tabindex="-1" aria-disabled="true">이전</a>
+                </li>
+                {% endif %}
+                <!--        페이지 리스트-->
+                {% for page_number in terms_list_n.paginator.page_range %}
+                {% if page_number >= terms_list_n.number|add:-2 and page_number <= terms_list_n.number|add:2 %}
+                {% if page_number == terms_list_n.number %}
+                <li class="page-item active" aria-current="page">
+                    <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="javascript:void(0)" class="page-link" data-page="{{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <!--        다음 페이지-->
+                {% if terms_list_n.has_next %}
+                <li class="page-item">
+                    <a href="javascript:void(0)" class="page-link" data-page="{{ terms_list_n.next_page_number }}">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a href="javascript:void(0)" class="page-link" tabindex="-1" aria-disabled="true">다음</a>
+                </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ last_page_num }}">&gt;&gt;</a>
+                </li>
+            </ul>
+
+        </div>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">준비 중</div>
     </div>
 </div>

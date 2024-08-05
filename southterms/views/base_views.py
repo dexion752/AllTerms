@@ -14,6 +14,8 @@ def indexTest(request):
 def srcList(request):
     MAX_LIST_CNT = 10
     last_page_num = 0
+    last_page_num_n = 0
+    last_page_num_s = 0
     total_s = 0
     total_n = 0
     page = request.GET.get('page', '1') # 페이지
@@ -38,12 +40,30 @@ def srcList(request):
         ).distinct()
         cnt = terms_list.count()
     paginator = Paginator(terms_list, MAX_LIST_CNT)
+    paginator_n = Paginator(terms_list_n, MAX_LIST_CNT)
+    paginator_s = Paginator(terms_list_s, MAX_LIST_CNT)
+
     for page_num in paginator.page_range:
         last_page_num = last_page_num + 1
     last_page_num = last_page_num + 1
+
+    for page_num in paginator_n.page_range:
+        last_page_num_n = last_page_num_n + 1
+    last_page_num_n = last_page_num_n + 1
+
+    for page_num in paginator_s.page_range:
+        last_page_num_s = last_page_num_s + 1
+    last_page_num_s = last_page_num_s + 1
+
     page_obj = paginator.get_page(page)
+    page_obj_n = paginator_n.get_page(page)
+    page_obj_s = paginator_s.get_page(page)
     context = {'terms_list' : page_obj,
+               'terms_list_n' : page_obj_n,
+               'terms_list_s' : page_obj_s,
                'last_page_num' : last_page_num,
+               'last_page_num_n' : last_page_num_n,
+               'last_page_num_s' : last_page_num_s,
                'page' : page,
                'kw' : kw,
                'cnt' : cnt,
@@ -729,7 +749,7 @@ def nChurchList(request):
     last_page_num = 0
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '') # 검색어
-    terms_list = NaverChurch.objects.order_by('term')
+    terms_list = NaverChurch.objects.order_by('id')
     title = terms_list[0].source
     cnt = NaverChurch.objects.count()
     if kw:
