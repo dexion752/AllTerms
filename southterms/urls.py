@@ -42,5 +42,16 @@ urlpatterns = [
     path('nmedibody/', base_views.nMediBodyList, name='nmedibody'),
     path('ndisease/', base_views.nDiseaseList, name='ndisease'),
     path('npharmacy/', base_views.nPharmacyList, name='npharmacy'),
+    path('march/', base_views.mArchList, name='march'),
+    path('medu/', base_views.mEduList, name='medu'),
+    path('mlim/', base_views.mLimList, name='mlim'),
+    path('mliter/', base_views.mLiterList, name='mliter'),
+    path('mvisualart/', base_views.mVisualArtList, name='mvisualart'),
+    path('mfolk/', base_views.mFolkList, name='mfolk'),
+    path('msocialpo/', base_views.mSocialPoList, name='msocialpo'),
+    path('mbio/', base_views.mBioList, name='mbio'),
+    path('mheat/', base_views.mHeatList, name='mheat'),
+    path('mmedi/', base_views.mMediList, name='mmedi'),
+    path('mmovie/', base_views.mMovieList, name='mmovie'),
 
 ]

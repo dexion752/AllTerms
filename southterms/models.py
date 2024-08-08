@@ -557,6 +557,213 @@ class NaverDrug(models.Model):
         managed = True
         db_table = 'naver_drug'
 
+
+class MirrorArch(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_arch'
+
+
+class MirrorLim(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_lim'
+
+class MirrorEdu(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_edu'
+
+
+class MirrorLiter(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_liter'
+
+
+class MirrorVisualArt(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_visualart'
+
+
+class MirrorFolk(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_folk'
+
+class MirrorSocialPo(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_socialpo'
+
+
+class MirrorBio(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_bio'
+
+class MirrorHeat(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_heat'
+
+
+class MirrorMedi(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_medi'
+
+
+class MirrorMovie(models.Model):
+    entry = models.TextField(blank=True, null=True)
+    hanJa = models.TextField(blank=True, null=True)
+    metaTerm1 = models.TextField(blank=True, null=True)
+    metaTerm2 = models.TextField(blank=True, null=True)
+    metaTerm3 = models.TextField(blank=True, null=True)
+    simpleEx = models.TextField(blank=True, null=True)
+    field = models.TextField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    modify_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entry
+
+    class Meta:
+        managed = True
+        db_table = 'mirror_movie'
+
+
 class Sources(models.Model):
     id = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=False, null=False)
@@ -569,8 +776,10 @@ class Sources(models.Model):
     create_date = models.DateTimeField(blank=True, null=True)
     modify_date = models.DateTimeField(blank=True, null=True)
 
+
     def __str__(self):
         return self.title
+
     class Meta:
         managed = True
         db_table = 'sources'

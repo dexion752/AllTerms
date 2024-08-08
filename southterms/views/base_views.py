@@ -23,8 +23,8 @@ def srcList(request):
     terms_list = Sources.objects.order_by('title')
     terms_list_s = Sources.objects.filter(code='s').order_by('title')
     terms_list_n = Sources.objects.filter(code='n').order_by('title')
-    print(terms_list_s)
-    print(terms_list_n)
+    # print(terms_list_s)
+    # print(terms_list_n)
     for no in range(terms_list.count()):
         row = terms_list.get(id=no)
         if row.code == 's':
@@ -1106,4 +1106,334 @@ def nPharmacyList(request):
                }
     # print(last_page_num)
     return render(request, 'southterms/terms_npharmacy_list.html', context)
+
+def mArchList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorArch.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorArch.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_march_list.html', context)
+
+def mEduList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorEdu.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorEdu.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_medu_list.html', context)
+
+def mLimList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorLim.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorLim.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mlim_list.html', context)
+
+def mLiterList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorLiter.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorLiter.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mliter_list.html', context)
+
+def mVisualArtList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorVisualArt.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorVisualArt.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mvisualart_list.html', context)
+
+def mFolkList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorFolk.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorFolk.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mfolk_list.html', context)
+
+def mSocialPoList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorSocialPo.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorSocialPo.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_msocialpo_list.html', context)
+
+def mBioList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorBio.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorBio.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mbio_list.html', context)
+
+def mHeatList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorHeat.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorHeat.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mheat_list.html', context)
+
+def mMediList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorMedi.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorMedi.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mmedi_list.html', context)
+
+def mMovieList(request):
+    MAX_LIST_CNT = 10
+    last_page_num = 0
+    page = request.GET.get('page', '1') # 페이지
+    kw = request.GET.get('kw', '') # 검색어
+    terms_list = MirrorMovie.objects.order_by('entry')
+    title = terms_list[1].field
+    cnt = MirrorMovie.objects.count()
+    if kw:
+        terms_list = terms_list.filter(
+            Q(entry__icontains=kw)  |
+            Q(simpleEx__icontains=kw) |
+            Q(metaTerm1__icontains=kw)
+        ).distinct()
+        cnt = terms_list.count()
+    paginator = Paginator(terms_list, MAX_LIST_CNT)
+    for page_num in paginator.page_range:
+        last_page_num = last_page_num + 1
+    last_page_num = last_page_num + 1
+    page_obj = paginator.get_page(page)
+    context = {'terms_list' : page_obj,
+               'last_page_num' : last_page_num,
+               'page' : page,
+               'kw' : kw,
+               'cnt' : cnt,
+               'title' : title,
+               }
+    # print(last_page_num)
+    return render(request, 'southterms/terms_mmovie_list.html', context)
 
