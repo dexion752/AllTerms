@@ -42,6 +42,7 @@ urlpatterns = [
     path('nmedibody/', base_views.nMediBodyList, name='nmedibody'),
     path('ndisease/', base_views.nDiseaseList, name='ndisease'),
     path('npharmacy/', base_views.nPharmacyList, name='npharmacy'),
+    path('nmarine/', base_views.nMarineList, name='nmarine'),
     path('march/', base_views.mArchList, name='march'),
     path('medu/', base_views.mEduList, name='medu'),
     path('mlim/', base_views.mLimList, name='mlim'),
