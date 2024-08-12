@@ -23,8 +23,6 @@ def srcList(request):
     terms_list = Sources.objects.order_by('title')
     terms_list_s = Sources.objects.filter(code='s').order_by('title')
     terms_list_n = Sources.objects.filter(code='n').order_by('title')
-    # print(terms_list_s)
-    # print(terms_list_n)
     for no in range(terms_list.count()):
         row = terms_list.get(id=no)
         if row.code == 's':
@@ -39,6 +37,22 @@ def srcList(request):
             Q(code__icontains=kw)
         ).distinct()
         cnt = terms_list.count()
+
+    if kw:
+        terms_list_s = terms_list_s.filter(
+            Q(title__icontains=kw)  |
+            # Q(simple_sense__icontains=kw) |
+            Q(code__icontains=kw)
+        ).distinct()
+        cnt = terms_list_s.count()
+
+        terms_list_n = terms_list_n.filter(
+            Q(title__icontains=kw)  |
+            # Q(simple_sense__icontains=kw) |
+            Q(code__icontains=kw)
+        ).distinct()
+        cnt = cnt + terms_list_n.count()
+
     paginator = Paginator(terms_list, MAX_LIST_CNT)
     paginator_n = Paginator(terms_list_n, MAX_LIST_CNT)
     paginator_s = Paginator(terms_list_s, MAX_LIST_CNT)
