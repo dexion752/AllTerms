@@ -30,6 +30,8 @@ def srcList(request):
         else:
             total_n = total_n + row.sum
     cnt = Sources.objects.count()
+    cnt_s = terms_list_s.count()
+    cnt_n = terms_list_n.count()
     if kw:
         terms_list = terms_list.filter(
             Q(title__icontains=kw)  |
@@ -44,14 +46,14 @@ def srcList(request):
             # Q(simple_sense__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
-        cnt = terms_list_s.count()
+        cnt_s = terms_list_s.count()
 
         terms_list_n = terms_list_n.filter(
             Q(title__icontains=kw)  |
             # Q(simple_sense__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
-        cnt = cnt + terms_list_n.count()
+        cnt_n = terms_list_n.count()
 
     paginator = Paginator(terms_list, MAX_LIST_CNT)
     paginator_n = Paginator(terms_list_n, MAX_LIST_CNT)
@@ -81,6 +83,8 @@ def srcList(request):
                'page' : page,
                'kw' : kw,
                'cnt' : cnt,
+               'cnt_s' : cnt_s,
+               'cnt_n' : cnt_n,
                'total_n' : total_n,
                'total_s' : total_s,
                }

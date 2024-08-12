@@ -8,9 +8,18 @@
            style="font-size:2rem; text-decoration-line:none">전문용어 자료 목록</a>
     </div>
     <div class="row my-3">
-        <div class="col-6">
-            <label for="total-terms">자료: </label>
-            <input type="text" name="" id="total-terms" value="{{ cnt|intcomma }}" readonly>
+
+        <div class="col-2">
+            <label for="total-terms-s">남 자료: </label>
+            <input style="width=100px;" type="text" name="" id="total-terms-s" value="{{ cnt_s|intcomma }} 종" readonly>
+        </div>
+        <div class="col-2">
+            <label for="total-terms-n">북 자료: </label>
+            <input style="width=100px;" type="text" name="" id="total-terms-n" value="{{ cnt_n|intcomma }} 종" readonly>
+        </div>
+        <div class="col-2">
+            <label for="total-terms-etc">기타 자료: </label>
+            <input style="width=100px;" type="text" name="" id="total-terms-etc" value="0 종" readonly>
         </div>
         <div class="col-6">
             <div class="input-group">
