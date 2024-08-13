@@ -241,37 +241,37 @@ btn_search.addEventListener('click', function() {
 });
 var simplmde = new SimpleMDE({ element: document.getElementById("create_q") });
 
-// 탭변경
-//$('ul li button').click(function(){
-//    var eq = $(this).index();
-//    $('ul li button').removeClass('active').eq(eq).addClass('active');
-//    $('.tab-pane').removeClass('active').eq(eq).addClass('active');
-//});
 
-// js 뱁변경
-tc = document.getElementsByClassName('tab-pane');
-for (let i = 0; i < tc.length; i++) {
-    if ( tc[i].className == 'tab-pane fade show active') {
-        index = i;
-    };
-};
-tabs = document.querySelectorAll('ul li button');
-for (let i = 0; i < tabs.length; i++) {
-    if ( i == index ) {
-        tabs[i].className = 'nav-link active';
-        tabs[i].ariaSelected = 'true';
-    } else {
-        tabs[i].className = 'nav-link';
-        tabs[i].ariaSelected = 'false';
-    };
-};
+// tab 유지
+const triggerTabList = document.querySelectorAll('#pills-tab button');
 
+triggerTabList.forEach(triggerEl => {
 
-// 새로고침 유지
-var eq = window.location.href.split('-').pop();
-if( eq > 0 ){
-    eq--;
-    $('ul li button').eq(eq).click();
+  const tabTrigger = new bootstrap.Tab(triggerEl);
+
+  triggerEl.addEventListener('click', event => {
+
+    event.preventDefault();
+    tabTrigger.show();
+
+    // save tab target
+    localStorage.setItem('active-tab', event.target.getAttribute('data-bs-target'));
+
+  });
+});
+
+// get the active tab id, set default
+const activeTabId = localStorage.getItem('active-tab') || '#tab1';
+
+// find the element that triggers the tab
+const activeTab = [...triggerTabList].find(el => el.getAttribute('data-bs-target') === activeTabId);
+
+// click the element to trigger the tab
+// in case it's not found, click the first tab
+if (activeTab) {
+  activeTab.click();
+} else {
+  triggerTabList[0].click();
 }
 </script>
 {% endblock %}
