@@ -44,14 +44,14 @@
 <!--            <td>-->
 <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
 <!--            </td>-->
-            <td>{{ term.entry }}</td>
-            <td>{{ term.hanJa}}</td>
+            <td>{{ term.entry|highlight:kw }}</td>
+            <td>{{ term.hanJa }}</td>
             {% if term.metaTerm2 %}
-            <td>{{ term.metaTerm2 }}</td>
+            <td>{{ term.metaTerm2|highlight:kw }}</td>
             {% else %}
-            <td>{{ term.metaTerm1 }}</td>
+            <td>{{ term.metaTerm1|highlight:kw }}</td>
             {% endif %}
-            <td>{{ term.simpleEx }}</td>
+            <td>{{ term.simpleEx|highlight:kw }}</td>
 <!--            <td>{{ term.source }}</td>-->
         </tr>
         {% endfor %}

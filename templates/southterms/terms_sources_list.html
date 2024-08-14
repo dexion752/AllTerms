@@ -24,7 +24,7 @@
         <div class="col-6">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}"
-                       placeholder="<자료명, 분류 코드> 안에서">
+                       placeholder="<자료명, 저자> 안에서">
                 <div>&ensp;&ensp;</div>
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="button" id="btn_search">검색</button>
@@ -75,9 +75,9 @@
                     <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
                     <!--            </td>-->
                     <td class="text-center text-start">
-                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title }}</a>
+                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title|highlight:kw }}</a>
                     </td>
-                    <td>{{ term.author }}</td>
+                    <td>{{ term.author|highlight:kw }}</td>
                     <td>{{ term.publisher }}</td>
                     <td>{{ term.sum|intcomma }}</td>
                     <td>{{ term.code }}</td>
@@ -155,9 +155,9 @@
                     <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
                     <!--            </td>-->
                     <td class="text-center text-start">
-                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title }}</a>
+                        <a style="text-decoration-line:none;" href="{{ term.path }}">{{ term.title|highlight:kw }}</a>
                     </td>
-                    <td>{{ term.author }}</td>
+                    <td>{{ term.author|highlight:kw }}</td>
                     <td>{{ term.publisher }}</td>
                     <td>{{ term.sum|intcomma }}</td>
                     <td>{{ term.code }}</td>
@@ -226,53 +226,52 @@
 {% endblock %}
 {% block script %}
 <script type='text/javascript'>
-const page_elements = document.getElementsByClassName("page-link");
-Array.from(page_elements).forEach(function(element) {
-    element.addEventListener('click', function() {
-        document.getElementById('page').value = this.dataset.page;
+
+    // tab 유지
+    const triggerTabList = document.querySelectorAll('#pills-tab button');
+    triggerTabList.forEach(triggerEl => {
+      const tabTrigger = new bootstrap.Tab(triggerEl);
+      triggerEl.addEventListener('click', event => {
+        event.preventDefault();
+        tabTrigger.show();
+        // save tab target
+        localStorage.setItem('active-tab', event.target.getAttribute('data-bs-target'));
+
+      });
+    });
+
+    // get the active tab id, set default
+    const activeTabId = localStorage.getItem('active-tab') || '#tab1';
+
+    // find the element that triggers the tab
+    const activeTab = [...triggerTabList].find(el => el.getAttribute('data-bs-target') === activeTabId);
+
+    // click the element to trigger the tab
+    // in case it's not found, click the first tab
+    if (activeTab) {
+      activeTab.click();
+    } else {
+      triggerTabList[0].click();
+    }
+
+    // search
+    const page_elements = document.getElementsByClassName("page-link");
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.getElementById('page').value = this.dataset.page;
+            document.getElementById('searchForm').submit();
+        });
+    });
+    const btn_search = document.getElementById("btn_search");
+    btn_search.addEventListener('click', function() {
+        document.getElementById('kw').value = document.getElementById('search_kw').value;
+        document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
         document.getElementById('searchForm').submit();
     });
-});
-const btn_search = document.getElementById("btn_search");
-btn_search.addEventListener('click', function() {
-    document.getElementById('kw').value = document.getElementById('search_kw').value;
-    document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-    document.getElementById('searchForm').submit();
-});
-var simplmde = new SimpleMDE({ element: document.getElementById("create_q") });
+
+    var simplmde = new SimpleMDE({ element: document.getElementById("create_q") });
 
 
-// tab 유지
-const triggerTabList = document.querySelectorAll('#pills-tab button');
-
-triggerTabList.forEach(triggerEl => {
-
-  const tabTrigger = new bootstrap.Tab(triggerEl);
-
-  triggerEl.addEventListener('click', event => {
-
-    event.preventDefault();
-    tabTrigger.show();
-
-    // save tab target
-    localStorage.setItem('active-tab', event.target.getAttribute('data-bs-target'));
-
-  });
-});
-
-// get the active tab id, set default
-const activeTabId = localStorage.getItem('active-tab') || '#tab1';
-
-// find the element that triggers the tab
-const activeTab = [...triggerTabList].find(el => el.getAttribute('data-bs-target') === activeTabId);
-
-// click the element to trigger the tab
-// in case it's not found, click the first tab
-if (activeTab) {
-  activeTab.click();
-} else {
-  triggerTabList[0].click();
-}
 </script>
 {% endblock %}
 

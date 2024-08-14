@@ -44,9 +44,9 @@
 <!--            <td>-->
 <!--                {{ terms_list.paginator.count|sub:terms_list.start_index|sub:forloop.counter0|add:1 }}-->
 <!--            </td>-->
-            <td>{{ term.term }}</td>
+            <td>{{ term.term|highlight:kw }}</td>
             <td>{{ term.eng }}</td>
-            <td>{{ term.simple_sense }}</td>
+            <td>{{ term.simple_sense|highlight:kw }}</td>
 <!--            <td>{{ term.source }}</td>-->
         </tr>
         {% endfor %}

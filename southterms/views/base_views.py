@@ -35,7 +35,7 @@ def srcList(request):
     if kw:
         terms_list = terms_list.filter(
             Q(title__icontains=kw)  |
-            # Q(simple_sense__icontains=kw) |
+            Q(author__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
         cnt = terms_list.count()
@@ -43,14 +43,14 @@ def srcList(request):
     if kw:
         terms_list_s = terms_list_s.filter(
             Q(title__icontains=kw)  |
-            # Q(simple_sense__icontains=kw) |
+            Q(author__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
         cnt_s = terms_list_s.count()
 
         terms_list_n = terms_list_n.filter(
             Q(title__icontains=kw)  |
-            # Q(simple_sense__icontains=kw) |
+            Q(author__icontains=kw) |
             Q(code__icontains=kw)
         ).distinct()
         cnt_n = terms_list_n.count()
