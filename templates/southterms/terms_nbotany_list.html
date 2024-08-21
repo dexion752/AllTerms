@@ -59,7 +59,7 @@
 <!--    페이징 처리 start-->
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" href="?page=1">&lt;&lt;</a>
+            <a href="javascript:void(0)" class="page-link" data-page="{{ 1 }}">&lt;&lt;</a>
         </li>
 <!--        이전 페이지-->
         {% if terms_list.has_previous %}
@@ -97,7 +97,7 @@
         </li>
         {% endif %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ last_page_num }}">&gt;&gt;</a>
+            <a href="javascript:void(0)" class="page-link" data-page="{{ terms_list.paginator.count }}">&gt;&gt;</a>
         </li>
     </ul>
 <!--    페이징 처리 end-->
